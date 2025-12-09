@@ -16,27 +16,25 @@ This system provides an end-to-end solution for alpha data lifecycle management,
 │                      Alpha Data Management System                         │
 ├───────────────────────────────────────────────────────────────────────────┤
 │                                                                           │
-│  ┌──────────────────┐  ┌──────────────────┐  ┌──────────────────┐        │
-│  │  fetch_and_      │  │  alpha_          │  │  alpha_          │        │
-│  │  import_alphas   │─▶│  recordsets_     │─▶│  precision_      │        │
-│  │                  │  │  update          │  │  sync_engine     │        │
-│  │  Batch Import    │  │  Recordsets      │  │  Single Alpha    │        │
-│  │  Pipeline        │  │  Pipeline        │  │  Sync            │        │
-│  └──────────────────┘  └──────────────────┘  └──────────────────┘        │
-│           │                     │                     │                   │
-│           ▼                     ▼                     ▼                   │
-│  ┌──────────────────────────────────────────────────────────────────┐    │
-│  │                       MongoDB Database                           │    │
-│  │                  (regular_alphas / super_alphas)                 │    │
-│  └──────────────────────────────────────────────────────────────────┘    │
-│           │                                                               │
-│           ▼                                                               │
-│  ┌──────────────────┐                        ┌──────────────────┐        │
-│  │  alpha_filter    │                        │  alpha_          │        │
-│  │                  │                        │  visualizer      │        │
-│  │  Quality         │                        │  Chart           │        │
-│  │  Filtering       │                        │  Generation      │        │
-│  └──────────────────┘                        └──────────────────┘        │
+│  ┌──────────────────┐    ┌──────────────────┐    ┌──────────────────┐     │
+│  │ fetch_and_       │    │ alpha_           │    │ alpha_           │     │
+│  │ import_alphas    │───▶│ recordsets_      │───▶│ precision_       │     │
+│  │                  │    │ update           │    │ sync_engine      │     │
+│  │ [Batch Import]   │    │ [Recordsets]     │    │ [Single Sync]    │     │
+│  └─────────┬────────┘    └─────────┬────────┘    └─────────┬────────┘     │
+│            │                       │                       │              │
+│            ▼                       ▼                       ▼              │
+│  ┌──────────────────────────────────────────────────────────────────┐     │
+│  │                        MongoDB Database                          │     │
+│  │                 (regular_alphas / super_alphas)                  │     │
+│  └─────────┬───────────────────────────────────────┬────────────────┘     │
+│            │                                       │                      │
+│            ▼                                       ▼                      │
+│  ┌──────────────────┐                    ┌──────────────────┐             │
+│  │ alpha_filter     │                    │ alpha_           │             │
+│  │                  │                    │ visualizer       │             │
+│  │ [Quality Filter] │                    │ [Chart Gen]      │             │
+│  └──────────────────┘                    └──────────────────┘             │
 │                                                                           │
 └───────────────────────────────────────────────────────────────────────────┘
 ```
