@@ -1,0 +1,93 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+*.code-workspace
+
+# Logs
+*.log
+Logs/
+**/Logs/
+
+# Data files - IMPORTANT: exclude all data
+WorldQuant/
+**/WorldQuant/
+Data/
+**/Data/
+*.rar
+*.zip
+*.csv
+*.json.gz
+
+# Documents (not uploading reports)
+*.pdf
+*.docx
+*.tex
+*.md
+!README.md
+!*/README.md
+!*/README_v4.md
+
+# Images
+*.png
+*.jpg
+*.jpeg
+
+# Temporary files
+*.tmp
+*.bak
+
+# Database files
+*.db
+*.sqlite
+*.vsidx
+
+# Secrets (if any)
+secrets/
+**/secrets/
+*.secret
+*.credentials
+*_credentials.json
+*_platform-brain.json
+*_session_cookie.json
+
+# Cookie files
+wq_cookies/
+**/wq_cookies/
+*.cookie
+*.cookies
+
+# Account files (may contain passwords)
+accounts.csv
+accounts.xlsx
+*accounts*.csv
+*accounts*.xlsx
+
+# State databases (may contain sensitive paths)
+recordsets_state.db
+
+# Results files (may contain sensitive info)
+*_results.json
+run_all_users_results.json
+
+# Git folder (if nested)
+.git/

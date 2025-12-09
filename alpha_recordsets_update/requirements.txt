@@ -1,0 +1,4 @@
+requests>=2.25.0
+pymongo>=4.0.0
+orjson>=3.9.0
+pathlib2>=2.3.0; python_version < '3.4'

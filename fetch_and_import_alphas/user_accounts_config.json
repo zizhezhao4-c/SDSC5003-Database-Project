@@ -1,0 +1,54 @@
+{
+    "_comment": "多账号批处理配置文件",
+    "//说明": "请在 USER_ACCOUNTS 中添加所有需要处理的账号",
+    
+    "//": "========================================",
+    "//账号文件": "CSV/Excel账号列表（可选）",
+    "//": "========================================",
+    "ACCOUNTS_FILE": null,
+    "_ACCOUNTS_FILE说明": "如果填写CSV/Excel文件路径，将从文件读取账号列表（优先级高于USER_ACCOUNTS）",
+    "_文件格式": "三列: user_key, email, password",
+    "_示例路径": "./accounts.csv 或 ./accounts.xlsx",
+    "_注意": "文件中的账号会自动创建凭据文件到 ~/secrets/{user_key}_platform-brain.json",
+    
+    "USER_ACCOUNTS": [
+        {
+            "user_key": "test1",
+            "description": "账号1",
+            "enabled": true
+        },
+        {
+            "user_key": "test2",
+            "description": "账号2",
+            "enabled": true
+        }
+    ],
+    
+    "//": "========================================",
+    "//执行控制": "控制执行哪些步骤",
+    "//": "========================================",
+    "EXECUTE_STEPS": {
+        "step1_fetch": true,
+        "step2_package": true,
+        "step3_import": true
+    },
+    
+    "//": "========================================",
+    "//错误处理": "控制遇到错误时的行为",
+    "//": "========================================",
+    "CONTINUE_ON_ERROR": true,
+    "//CONTINUE_ON_ERROR": "true=某个账号失败后继续处理下一个; false=遇到错误立即停止",
+    
+    "//": "========================================",
+    "//凭据要求": "每个账号需要准备的文件",
+    "//": "========================================",
+    "//凭据文件": "~/secrets/{user_key}_platform-brain.json (包含email和password)",
+    "//Cookie文件": "~/secrets/wq_cookies/{user_key}_session_cookie.json (自动生成)",
+    
+    "//": "========================================",
+    "//输出结果": "脚本执行后的输出",
+    "//": "========================================",
+    "//结果文件": "run_all_users_results.json (包含详细执行结果)",
+    "//日志文件": "按照 wq_logger 配置输出到日志目录"
+}
+

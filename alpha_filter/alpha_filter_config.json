@@ -1,0 +1,114 @@
+{
+  "filter_name": "通用Alpha筛选配置",
+  "description": "通过配置参数灵活筛选符合条件的alpha",
+  "database": "regular_alphas",
+  "collection": "test",
+  "filters": {
+    "pyramids": {
+      "enabled": true,
+      "operator": "contains_any",
+      "values": ["GLB/D1/NEWS"]
+    },
+    "status": {
+      "enabled": true,
+      "operator": "exclude",
+      "values": ["ACTIVE"]
+    },
+    "region": {
+      "enabled": false,
+      "operator": "in",
+      "values": ["EUR", "ASI", "USA"]
+    },
+    "universe": {
+      "enabled": false,
+      "operator": "in",
+      "values": ["TOP2500", "TOP3000", "MINVOL1M"]
+    },
+    "author": {
+      "enabled": false,
+      "operator": "equals",
+      "value": "XX00000"
+    },
+    "delay": {
+      "enabled": false,
+      "operator": "equals",
+      "value": 1
+    },
+    "checks": {
+      "no_fail": {
+        "enabled": true,
+        "description": "排除所有包含FAIL检查项的alpha"
+      },
+      "specific_checks": {
+        "enabled": false,
+        "check_names": ["LOW_SHARPE", "LOW_FITNESS"],
+        "required_result": "PASS"
+      }
+    },
+    "sharpe": {
+      "sharpe_2y": {
+        "enabled": false,
+        "operator": "gt",
+        "value": 1.5
+      },
+      "ladder_sharpe": {
+        "enabled": false,
+        "operator": "gt",
+        "value": 1.5
+      },
+      "is_sharpe": {
+        "enabled": false,
+        "operator": "gt",
+        "value": 1.5
+      },
+      "any_sharpe_gt": {
+        "enabled": true,
+        "description": "2Y Sharpe或Ladder Sharpe任一大于阈值即可",
+        "value": 1.5
+      }
+    },
+    "date_range": {
+      "enabled": false,
+      "start_date": "2013-01-20",
+      "end_date": "2023-01-20"
+    },
+    "exclude_red_tagged": {
+      "enabled": true,
+      "description": "排除color为RED且tags和name匹配特定值的alpha，或包含特定关键词",
+      "rules": [
+        {
+          "name": "not",
+          "tag": "not"
+        },
+        {
+          "name": "used",
+          "tag": "used"
+        }
+      ],
+      "keywords": ["used"]
+    }
+  },
+  "output": {
+    "format": "json",
+    "save_ids_only": true,
+    "include_fields": [
+      "id",
+      "author",
+      "status",
+      "settings",
+      "is_sharpe",
+      "sharpe_2y",
+      "ladder_sharpe",
+      "checks"
+    ],
+    "save_to_file": true,
+    "file_prefix": "filtered_alphas",
+    "include_timestamp": true,
+    "max_keep_files": 100
+  },
+  "display": {
+    "show_summary": true,
+    "show_statistics": true,
+    "max_detail_display": 10
+  }
+}

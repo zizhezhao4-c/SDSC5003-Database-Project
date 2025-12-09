@@ -1,0 +1,121 @@
+{
+  "_comment": "Alpha Recordsets 本地爬取环境配置 (步骤2)",
+  
+  "//": "========================================",
+  "//1": "数据源与目标配置",
+  "//": "========================================",
+  
+  "ALPHA_IDS_FILE": "alpha_recordsets_update/alpha_nofail_low2y_gt2_20251005_101949.json",
+  "//ALPHA_IDS_FILE": "步骤1/2默认使用的 alpha ID 列表路径（支持 .txt 或 .json 格式）",
+  
+  "CHECK_DB": [27017],
+  "//CHECK_DB": "用于检查数据存在性的数据库端口。单值（如27017）或列表（如[27017,27018]）",
+  
+  "WRITE_DB": [27017],
+  "//WRITE_DB": "步骤3写入的目标数据库端口。单值或列表。27018=wq{USER}.regular_alphas, 27017=regular_alphas.{USER}",
+  
+  "//": "========================================",
+  "//2": "并发与性能配置",
+  "//": "========================================",
+  
+  "MAX_WORKERS": 3,
+  "//MAX_WORKERS": "并发worker数量。推荐: 网络良好=5, 一般=3, 不稳定=1-2",
+  
+  "REQUEST_TIMEOUT": 90,
+  "//REQUEST_TIMEOUT": "单个HTTP请求超时时间（秒）。推荐: 60-120",
+  
+  "MAX_RETRIES": 9,
+  "//MAX_RETRIES": "单个请求最大重试次数。推荐: 5-12",
+  
+  "INITIAL_BACKOFF": 8,
+  "//INITIAL_BACKOFF": "首次重试等待时间（秒）。推荐: 5-15",
+  
+  "BACKOFF_MULTIPLIER": 2.0,
+  "//BACKOFF_MULTIPLIER": "指数退避因子。推荐: 2.0-3.0",
+  
+  "MAX_BACKOFF": 240,
+  "//MAX_BACKOFF": "单次退避最大值（秒）。推荐: 120-600",
+  
+  "MAX_RETRY_ROUNDS": 5,
+  "//MAX_RETRY_ROUNDS": "失败后的最大重试轮数。0或负数=不限制",
+  
+  "SESSION_CHECK_INTERVAL": 50,
+  "//SESSION_CHECK_INTERVAL": "每成功N个请求后检查会话有效性",
+  
+  "//": "========================================",
+  "//3": "更新策略配置",
+  "//": "========================================",
+  
+  "FETCH_UPDATE_MODE": "skip",
+  "//FETCH_UPDATE_MODE": "步骤2（本地抓取）的更新策略",
+  "//FETCH_UPDATE_MODE_OPTIONS": {
+    "overwrite": "重新抓取并覆盖本地文件",
+    "update": "同 overwrite（本地文件通常是快照，无法合并，故直接覆盖）",
+    "skip": "若本地已有文件，则跳过抓取（节省API）"
+  },
+  
+  "//": "========================================",
+  "//4": "路径与开关配置",
+  "//": "========================================",
+  
+  "BASE_DIRECTORY": "../WorldQuant/Data/test/recordsets",
+  "//BASE_DIRECTORY": "recordsets输出根目录。相对于脚本目录的路径",
+  
+  "SKIP_REGULAR": false,
+  "//SKIP_REGULAR": "是否跳过Regular Alphas的处理",
+  
+  "SKIP_SUPER": true,
+  "//SKIP_SUPER": "是否跳过Super Alphas的处理",
+  
+  "CONFIRM_BEFORE_RUN": true,
+  "//CONFIRM_BEFORE_RUN": "运行前是否需要交互式确认（生产环境可设为false）",
+  
+  "//": "========================================",
+  "//5": "高级配置（一般不需要修改）",
+  "//": "========================================",
+  
+  "RECORDSETS_CODE_PATH": null,
+  "//RECORDSETS_CODE_PATH": "recordsets模块路径。null=使用默认路径",
+  
+  "RECORDSETS_FETCH_SCRIPT": null,
+  "//RECORDSETS_FETCH_SCRIPT": "fetch_recordsets脚本路径。null=自动查找",
+  
+  "//": "========================================",
+  "//6": "预设配置场景",
+  "//": "========================================",
+  
+  "//场景1_首次全量部署": {
+    "SHARED_UPDATE_MODE": "skip",
+    "MAX_WORKERS": 3,
+    "CONFIRM_BEFORE_RUN": true,
+    "WRITE_DB": [27017]
+  },
+  
+  "//场景2_日常增量更新": {
+    "SHARED_UPDATE_MODE": "update",
+    "MAX_WORKERS": 3,
+    "WRITE_DB": [27017]
+  },
+  
+  "//场景3_网络不稳定": {
+    "MAX_WORKERS": 1,
+    "REQUEST_TIMEOUT": 120,
+    "MAX_RETRIES": 12,
+    "INITIAL_BACKOFF": 15,
+    "BACKOFF_MULTIPLIER": 3.0,
+    "MAX_BACKOFF": 600
+  },
+  
+  "//场景4_快速测试": {
+    "MAX_WORKERS": 1,
+    "MAX_RETRIES": 3,
+    "CONFIRM_BEFORE_RUN": false,
+    "WRITE_DB": []
+  },
+  
+  "//场景5_补充失败数据": {
+    "SHARED_UPDATE_MODE": "overwrite",
+    "MAX_WORKERS": 2,
+    "ALPHA_IDS_FILE": "failed_alphas_retry.txt"
+  }
+}

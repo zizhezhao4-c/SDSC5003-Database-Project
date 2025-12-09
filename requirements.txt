@@ -1,0 +1,17 @@
+# SDSC5003 Database Project - Dependencies
+# Install with: pip install -r requirements.txt
+
+# MongoDB driver
+pymongo>=4.0.0
+
+# HTTP requests
+requests>=2.28.0
+
+# High-performance JSON (optional but recommended)
+orjson>=3.8.0
+
+# Progress bars
+tqdm>=4.64.0
+
+# Timezone handling (optional)
+pytz>=2023.3

@@ -1,0 +1,65 @@
+{
+  "_comment": "Step 1: Select Alpha Range 专用配置",
+  
+  "//": "========================================",
+  "//1": "数据库查询源配置",
+  "//": "========================================",
+
+  "SOURCE_DB_HOST": "localhost",
+  "SOURCE_DB_PORT": 27017,
+  "//SOURCE_DB_PORT": "MongoDB 连接端口，默认 27017",
+  
+  "SOURCE_DB_NAME": "regular_alphas",
+  "//SOURCE_DB_NAME": "数据源数据库名称。可选: regular_alphas, super_alphas, submitted_alphas",
+
+  "//": "========================================",
+  "//2": "筛选条件配置",
+  "//": "========================================",
+
+  "ENABLE_REGION_FILTER": false,
+  "//ENABLE_REGION_FILTER": "是否开启区域筛选。true=筛选指定区域, false=不限区域(全量筛选)",
+
+  "REGION_INPUT": "USA",
+  "//REGION_INPUT": "当ENABLE_REGION_FILTER=true时生效，筛选地区，例如: USA, EUR, ASIA, GLB",
+
+  "FILTER_UNIVERSE": "TOP3000",
+  "//FILTER_UNIVERSE": "筛选Universe，例如: TOP3000, TOP1200, MINVOL。null或空字符串表示不限",
+
+  "FILTER_DELAY": 1,
+  "//FILTER_DELAY": "筛选Delay值，例如: 1, 0。设置为 -1 表示不限",
+
+  "//": "========================================",
+  "//2.1": "基础指标筛选配置 (默认值对应原代码硬编码)",
+  "//": "========================================",
+
+  "MIN_FITNESS": 1,
+  "//MIN_FITNESS": "最小 Fitness (is.fitness > X)",
+
+  "MIN_SHARPE": 1.25,
+  "//MIN_SHARPE": "最小 Sharpe (is.sharpe > X)",
+
+  "MIN_LONG_COUNT": 50,
+  "//MIN_LONG_COUNT": "最小 Long Count (is.longCount > X)",
+
+  "MIN_SHORT_COUNT": 50,
+  "//MIN_SHORT_COUNT": "最小 Short Count (is.shortCount > X)",
+
+  "MIN_PNL": 1000000,
+  "//MIN_PNL": "最小 PnL (is.pnl > X)",
+
+  "MAX_TURNOVER": 0.7,
+  "//MAX_TURNOVER": "最大 Turnover (is.turnover < X)",
+
+  "ALPHA_TYPE": "REGULAR",
+  "//ALPHA_TYPE": "Alpha类型，例如: REGULAR, SUPER",
+
+  "EXCLUDE_STATUS": "ACTIVE",
+  "//EXCLUDE_STATUS": "排除的状态，例如: ACTIVE。若为空或null则不排除",
+
+  "//": "========================================",
+  "//3": "输出配置",
+  "//": "========================================",
+  
+  "OUTPUT_DIR": "alpha_ids_to_fetch_list",
+  "//OUTPUT_DIR": "筛选结果输出目录"
+}

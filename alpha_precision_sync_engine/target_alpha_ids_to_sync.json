@@ -1,0 +1,9 @@
+{
+    "_comment": "要同步的 Alpha ID 列表 - 直接运行 sync_single_alphas.py 会读取此文件",
+    "_usage": "python sync_single_alphas.py (无参数时自动读取此文件)",
+    "alpha_ids": [
+        "替换成你要同步的alpha_id_1",
+        "替换成你要同步的alpha_id_2",
+        "替换成你要同步的alpha_id_3"
+    ]
+}
