@@ -23,14 +23,14 @@ This system provides an end-to-end solution for alpha data lifecycle management,
 │  │  Batch Import    │    │  Recordsets      │    │  Single Alpha    │      │
 │  │  Pipeline        │    │  Pipeline        │    │  Sync            │      │
 │  └──────────────────┘    └──────────────────┘    └──────────────────┘      │
-│           │                       │                       │                │
-│           ▼                       ▼                       ▼                │
+│           │                       │                       │                 │
+│           ▼                       ▼                       ▼                 │
 │  ┌────────────────────────────────────────────────────────────────────┐    │
 │  │                         MongoDB Database                           │    │
 │  │                    (regular_alphas / super_alphas)                 │    │
 │  └────────────────────────────────────────────────────────────────────┘    │
-│           │                                                                │
-│           ▼                                                                │
+│           │                                                                 │
+│           ▼                                                                 │
 │  ┌──────────────────┐                            ┌──────────────────┐      │
 │  │  alpha_filter    │                            │  alpha_          │      │
 │  │                  │                            │  visualizer      │      │
