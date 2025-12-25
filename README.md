@@ -1,4 +1,4 @@
-# SDSC5003 Storing and Retrieving Data - Alpha Data Management System
+# Alpha Data Management System
 
 [![MongoDB](https://img.shields.io/badge/MongoDB-6.0-green.svg)](https://www.mongodb.com/)
 [![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
